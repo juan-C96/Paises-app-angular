@@ -10,11 +10,20 @@ export class PaisService {
 
   private apiUrl: string = 'https://restcountries.com/v3.1/name';
 
+  private apiUrl_capital: string = 'https://restcountries.com/v3.1/capital';
+
   constructor( private http:HttpClient ) { }
 
   buscarPais( termino: string ): Observable<Country[]> {
     
     const url = `${ this.apiUrl }/${ termino }`;
+
+    return this.http.get<Country[]>( url );
+  }
+
+  buscarCapital( termino: string ): Observable<Country[]> {
+    
+    const url = `${ this.apiUrl_capital }/${ termino }`;
 
     return this.http.get<Country[]>( url );
   }
